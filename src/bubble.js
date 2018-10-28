@@ -1,3 +1,5 @@
+var {swap} = require('./utils');
+
 // Bubble sort is in place sorting algorithm 
 // Bubble sort would sort list with worst case time complexity of (O(n^2)).
 // Bubble sort's space complexity is O(1).
@@ -11,8 +13,6 @@ function bubbleSort(arr){
     }
     return arr;
 }
-function swap(arr, i, j){
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-}
+
 
 console.log(bubbleSort([56,65,26,5,6,32,8,97,23,36]));
