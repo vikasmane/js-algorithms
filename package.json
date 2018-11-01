@@ -1,0 +1,22 @@
+{
+  "name": "js-algorithms",
+  "version": "1.0.0",
+  "description": "JS-Sorting",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vikasmane/js-sorting.git"
+  },
+  "author": "Vikas Mane",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vikasmane/js-sorting/issues"
+  },
+  "homepage": "https://github.com/vikasmane/js-sorting#readme",
+  "dependencies": {
+    "expect": "^23.6.0"
+  }
+}
