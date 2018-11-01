@@ -1,4 +1,4 @@
-var {swap} = require('./utils');
+var {swap} = require('./../utils');
 
 // Bubble sort is in place sorting algorithm 
 // Bubble sort would sort list with worst case time complexity of (O(n^2)).

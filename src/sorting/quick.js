@@ -1,4 +1,4 @@
-var {swap} = require('./utils');
+var {swap} = require('./../utils');
 
 // Quick sort 
 // Quick Sort in place sorting algorithm with worst case time complexity of O(nlogn)

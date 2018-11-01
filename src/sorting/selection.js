@@ -1,4 +1,4 @@
-var {swap} = require('./utils');
+var {swap} = require('./../utils');
 
 //Selection sort
 function selection(arr){
