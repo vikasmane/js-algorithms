@@ -1,5 +1,4 @@
-const expect = require('expect');
-function maxSubArray(arr){
+module.exports = function maxSubArray(arr){
     let startInd = 0;
     let endInd = arr.length - 1;
     let currSum = -Infinity;
@@ -20,4 +19,3 @@ function maxSubArray(arr){
     });
     return arr.slice(startInd, endInd+1);
 }
-expect(maxSubArray([15,-68,37,36,-75,69,55,-56])).toEqual([69,55]);
