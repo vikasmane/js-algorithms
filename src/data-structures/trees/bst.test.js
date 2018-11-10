@@ -37,20 +37,20 @@ describe('Tree Traversal', () => {
         //   5      13
         // 2   7  11    16
         //DFS Pre Order [10, 5, 2, 7, 13, 11, 16];
-        expect(tree.DFS_pre()).toEqual([10, 5, 2, 7, 13, 11, 16]);
+        expect(tree.DFS_Pre()).toEqual([10, 5, 2, 7, 13, 11, 16]);
     });
     test('DFS In-Order', () => {
         //      10
         //   5      13
         // 2   7  11    16
         //DFS In Order [2, 5, 7, 10, 11, 13, 16];
-        expect(tree.DFS_in()).toEqual([2, 5, 7, 10, 11, 13, 16]);
+        expect(tree.DFS_In()).toEqual([2, 5, 7, 10, 11, 13, 16]);
     });
     test('DFS Post-Order', () => {
         //      10
         //   5      13
         // 2   7  11    16
         //DFS Post Order [2, 7, 5, 11, 16, 13, 10];
-        expect(tree.DFS_post()).toEqual([2, 7, 5, 11, 16, 13, 10]);
+        expect(tree.DFS_Post()).toEqual([2, 7, 5, 11, 16, 13, 10]);
     });
 })

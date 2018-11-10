@@ -7,9 +7,9 @@ module.exports = class Stack {
         this.list = new DoublyLinkedList();
     }
     push(val) {
-        this.list.shift(val);
+        this.list.unshift(val);
     }
     pop() {
-        this.list.unshift();
+        this.list.shift();
     }
 }

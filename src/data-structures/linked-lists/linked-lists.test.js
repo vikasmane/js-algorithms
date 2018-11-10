@@ -29,14 +29,14 @@ describe('Singly Linked List', ()=>{
         expect(sll.length).toEqual(1);
     });
 
-    test('Shifts element in the list', ()=>{
-        sll.shift(10);
+    test('Unshifts element in the list', ()=>{
+        sll.unshift(10);
         expect(sll.head.val).toEqual(10);
         expect(sll.length).toEqual(2);
     });
 
-    test('Unshifts first element in the list and returns length', ()=>{
-        sll.unshift();
+    test('Shifts first element in the list and returns length', ()=>{
+        sll.shift();
         expect(sll.head.val).toEqual(5);
         expect(sll.length).toEqual(1);
     });
@@ -70,12 +70,12 @@ describe('Doubly Linked List', ()=>{
         dll.pop();
         expect(dll.tail).toEqual(null);
     });
-    test('Shift element to the list', ()=>{
-        dll.shift(5).shift(10);
+    test('Unshift element to the list', ()=>{
+        dll.unshift(5).unshift(10);
         expect(dll.head.val).toEqual(10);
     });
-    test('Unshift element from the list', () =>{
-        dll.unshift();
+    test('Shift element from the list', () =>{
+        dll.shift();
         expect(dll.head.val).toEqual(5);
     });
     test('Get an element at an index', ()=>{

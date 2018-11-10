@@ -39,7 +39,7 @@ module.exports = class DoublyLinkedList{
         this.length--;
         return this;
     }
-    shift(val){
+    unshift(val){
         let newNode = new Node(val);
         if(!this.length){
             this.head = newNode;
@@ -52,7 +52,7 @@ module.exports = class DoublyLinkedList{
         this.length++;
         return this;
     }
-    unshift(){
+    shift(){
         if(this.length == 1){
             this.head = null;
             this.tail = null;
