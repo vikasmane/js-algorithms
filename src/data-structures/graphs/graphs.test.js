@@ -26,17 +26,24 @@ describe('Graphs', () => {
         expect(graph.adjacencyList['D']).toHaveLength(1);
     });
 });
-
+// Graph 
+// B----D
+// |  / |
+// | /  |
+// C----A
 describe('Graph Traversal', ()=>{
     let graph;
     beforeAll(()=>{
         graph = new Graph;
+        graph.addVertex('B').addVertex('C').addVertex('A').addVertex('D');
+        graph.addEdge('B', 'C').addEdge('C', 'A').addEdge('C', 'D').addEdge('A', 'D').addEdge('D', 'B');
+        console.log(graph.adjacencyList);
     });
 
     test('BFS', ()=>{
-        expect(graph.BFS()).toEqual([]);
+        expect(graph.BFS('B')).toEqual(['B', 'C', 'D', 'A']);
     });
     test('DFS', ()=>{
-        expect(graph.DFS()).toEqual([]);
+        expect(graph.DFS('B')).toEqual(["B", "D", "A", "C"]);
     })
-})
+});
