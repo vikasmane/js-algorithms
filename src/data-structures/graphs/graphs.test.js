@@ -9,7 +9,7 @@ describe('Graphs', () => {
         graph.addVertex('B').addVertex('C').addVertex('A').addVertex('D');
         expect(graph.adjacencyList['B']).toEqual([]);
     });
-    test('Add an Edge to the graph', ()=>{
+    test('Add an Edge to the graph', () => {
         graph.addEdge('B', 'C').addEdge('C', 'A').addEdge('A', 'D').addEdge('D', 'B').addEdge('C', 'D');
         expect(graph.adjacencyList['B']).toHaveLength(2);
         expect(graph.adjacencyList['D']).toHaveLength(3);
@@ -26,24 +26,24 @@ describe('Graphs', () => {
         expect(graph.adjacencyList['D']).toHaveLength(1);
     });
 });
+
 // Graph 
 // B----D
 // |  / |
 // | /  |
 // C----A
-describe('Graph Traversal', ()=>{
+describe('Graph Traversal', () => {
     let graph;
-    beforeAll(()=>{
+    beforeAll(() => {
         graph = new Graph;
         graph.addVertex('B').addVertex('C').addVertex('A').addVertex('D');
         graph.addEdge('B', 'C').addEdge('C', 'A').addEdge('C', 'D').addEdge('A', 'D').addEdge('D', 'B');
-        console.log(graph.adjacencyList);
     });
 
-    test('BFS', ()=>{
+    test('BFS', () => {
         expect(graph.BFS('B')).toEqual(['B', 'C', 'D', 'A']);
     });
-    test('DFS', ()=>{
+    test('DFS', () => {
         expect(graph.DFS('B')).toEqual(["B", "D", "A", "C"]);
-    })
+    });
 });
