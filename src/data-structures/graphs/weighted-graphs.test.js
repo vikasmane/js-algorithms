@@ -55,3 +55,36 @@ describe('Dijkstra\'s algorithm on weighted nondirected graph', () => {
         expect(graph.dijkstra('A', 'C')).toEqual(7);
     })
 });
+
+/**
+ * Graph representation for weighted directed graph with negative edges
+ *       5            1          3      
+ *  s--------->A----------->B--------t  
+ *  |          ^       -|   |      -|   
+ *  |        2 |   4  /   -1|     /     
+ *  |          |   /        |   /   1   
+ *  |          | /          V /         
+ *   >-------->C----------->D           
+ *        -2          4                  
+ * Bellman-ford suggest for above graph the shortest path from s to t is
+ * s -> C -> A -> B -> D -> t
+ * and overall cost would be 
+ * 1
+ */
+describe('Bellman ford algorithm on weighted directed graph with negative edges', () => {
+    let graph;
+
+    beforeAll(() => {
+        graph = new WeightedGraph;
+        graph.addVertex('s').addVertex('A').addVertex('B').addVertex('C').addVertex('D').addVertex('t');
+        graph
+            .addEdge('s', 'A', 5, true).addEdge('s', 'C', -2, true)
+            .addEdge('A', 'B', 1, true)
+            .addEdge('C', 'A', 2, true).addEdge('C', 'B', 4, true).addEdge('C', 'D', 4, true)
+            .addEdge('B', 'D', -1, true).addEdge('B', 't', 3, true)
+            .addEdge('D', 't', 1, true);
+    })
+    test('Bellman-Ford', () => {
+        expect(graph.bellmanFord('s', 't')).toEqual(1);
+    })
+});

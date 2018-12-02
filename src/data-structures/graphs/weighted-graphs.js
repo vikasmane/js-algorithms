@@ -101,4 +101,48 @@ module.exports = class WeightedGraph {
 
         return result[v2];
     }
+    bellmanFord(v1, v2) {
+        let result = {};
+        let current = v1;
+        let visited = {};
+        
+        let v = Object.keys(this.adjacencyList);
+        let j = v.length-1;
+        v.reduce((ac, x) => {
+            if (x === v1) {
+                ac[x] = 0;
+            } else {
+                ac[x] = Infinity;
+            }
+            return ac;
+        }, result);
+
+        while(j > 0){
+            current = v1;
+            visited = {};
+            while(current){
+                if (!visited[current]) {
+                    this.adjacencyList[current].forEach((x) => {
+                        let dV = (result[current] + x.weight);
+                        let dU = result[x.node];
+                        if (dV < dU) result[x.node] = dV;
+                    });
+                    visited[current] = true;
+                }
+                let min = Infinity, minV;
+                for (var k in result) {
+                    if (!visited[k]) {
+                        if (result[k] < min) {
+                            min = result[k];
+                            minV = k;
+                        }
+                    }
+                };
+
+                current = minV;
+            }
+            j--;
+        }
+        return result[v2];
+    }
 }
