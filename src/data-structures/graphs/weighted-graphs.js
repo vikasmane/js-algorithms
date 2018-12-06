@@ -1,7 +1,9 @@
+const UnionFind = require('./../disjoint-sets/union-find');
 
 module.exports = class WeightedGraph {
     constructor() {
         this.adjacencyList = {};
+        this.unionFind = new UnionFind();
     }
     addVertex(vertex) {
         if (!this.adjacencyList[vertex]) this.adjacencyList[vertex] = [];
@@ -105,9 +107,9 @@ module.exports = class WeightedGraph {
         let result = {};
         let current = v1;
         let visited = {};
-        
+
         let v = Object.keys(this.adjacencyList);
-        let j = v.length-1;
+        let j = v.length - 1;
         v.reduce((ac, x) => {
             if (x === v1) {
                 ac[x] = 0;
@@ -117,10 +119,10 @@ module.exports = class WeightedGraph {
             return ac;
         }, result);
 
-        while(j > 0){
+        while (j > 0) {
             current = v1;
             visited = {};
-            while(current){
+            while (current) {
                 if (!visited[current]) {
                     this.adjacencyList[current].forEach((x) => {
                         let dV = (result[current] + x.weight);
@@ -144,5 +146,71 @@ module.exports = class WeightedGraph {
             j--;
         }
         return result[v2];
+    }
+    prims(v1) {
+        let result = {};
+        let current = v1;
+        let visited = {};
+
+        let v = Object.keys(this.adjacencyList);
+        v.reduce((ac, x) => {
+            if (x === v1) {
+                ac[x] = 0;
+            } else {
+                ac[x] = Infinity;
+            }
+            return ac;
+        }, result);
+
+        while (current) {
+            if (!visited[current]) {
+                this.adjacencyList[current].forEach((x) => {
+                    if (result[x.node] > x.weight && !visited[x.node]) result[x.node] = x.weight;
+                });
+                visited[current] = true;
+            }
+            let min = Infinity, minV;
+            for (var k in result) {
+                if (!visited[k]) {
+                    if (result[k] < min) {
+                        min = result[k];
+                        minV = k;
+                    }
+                }
+            };
+            current = minV;
+        }
+        let minCost = 0;
+        for (var k in result) {
+            minCost += result[k];
+        };
+
+        return minCost;
+    }
+    kruskals() {
+        let e = [];
+        let v = (new Array(9)).fill(-1);
+        for (var k in this.adjacencyList) {
+            e = e.concat(this.adjacencyList[k].map((x) => {
+                return {
+                    v1: k,
+                    v2: x.node,
+                    weight: x.weight
+                }
+            }))
+        }
+        e = e.sort((a, b) => {
+            return a.weight - b.weight;
+        })
+        .map((x, i) => i % 2 === 0 && x).filter(Boolean);
+
+        let r, minCost = 0;
+        while(r = e.shift()){
+            let isCycle = this.unionFind.union(r['v1'], r['v2']);
+            if(!isCycle) {
+                minCost += r['weight'];
+            }
+        }
+        return minCost;
     }
 }

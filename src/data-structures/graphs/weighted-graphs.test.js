@@ -60,12 +60,12 @@ describe('Dijkstra\'s algorithm on weighted nondirected graph', () => {
  * Graph representation for weighted directed graph with negative edges
  *       5            1          3      
  *  s--------->A----------->B--------t  
- *  |          ^       -|   |      -|   
- *  |        2 |   4  /   -1|     /     
- *  |          |   /        |   /   1   
- *  |          | /          V /         
- *   >-------->C----------->D           
- *        -2          4                  
+ *   \         ^       -|   |      -|   
+ *     \     2 |   4  /   -1|     /     
+ *    -2 \     |   /        |   /   1   
+ *         _|  | /          V /         
+ *             C----------->D           
+ *                  4                  
  * Bellman-ford suggest for above graph the shortest path from s to t is
  * s -> C -> A -> B -> D -> t
  * and overall cost would be 
@@ -86,5 +86,43 @@ describe('Bellman ford algorithm on weighted directed graph with negative edges'
     })
     test('Bellman-Ford', () => {
         expect(graph.bellmanFord('s', 't')).toEqual(1);
+    })
+});
+
+/**
+ * Find Minimum Cost spanning tree from below graph
+ *      4        8          7           9          
+ *  0-------1--------2-----------3-----------4     
+ *  |       |        | \         |         /       
+ *  |       |      2 |   \       |       /         
+ *  |     11|        8     \ 4   |14   /  10       
+ *  |       |  7  /  | 6     \   |   /             
+ *  |       |  /     |         \ | /               
+ *   -------7--------6-----------5                 
+ *      8        1          2                       
+ */
+describe('Minimum cost spanning tree', () => {
+    let graph;
+
+    beforeAll(() => {
+        graph = new WeightedGraph;
+        graph
+            .addVertex('0').addVertex('1').addVertex('2')
+            .addVertex('3').addVertex('4').addVertex('5')
+            .addVertex('6').addVertex('7').addVertex('8');
+        graph
+            .addEdge('0', '1', 4).addEdge('0', '7', 8)
+            .addEdge('1', '7', 11).addEdge('1', '2', 8)
+            .addEdge('7', '6', 1).addEdge('7', '8', 7)
+            .addEdge('6', '8', 6).addEdge('6', '5', 2)
+            .addEdge('2', '3', 7).addEdge('2', '5', 4).addEdge('2', '8', 2)
+            .addEdge('3', '4', 9).addEdge('3', '5', 14)
+            .addEdge('4', '5', 10);
+    })
+    test('Prim\'s algorithm', () => {
+        expect(graph.prims('0')).toEqual(37);
+    })
+    test('Kruskal\'s algorithm', () => {
+        expect(graph.kruskals('0')).toEqual(37);
     })
 });
